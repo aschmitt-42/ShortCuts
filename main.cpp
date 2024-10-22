@@ -1,20 +1,36 @@
 #include <iostream>
 #include <fstream>
-#include <iostream>
 #include <string>
 #include <algorithm>  // Pour std::transform
 #include <cctype>
+#include <filesystem> // Pour std::filesystem
+
+namespace fs = std::filesystem;
 
 int main(int argc, char **argv)
 {
     if (argc == 1)
         return 1;
+    
+    // Check and create directories if they do not exist
+
+    if (!fs::exists("src")) {
+        fs::create_directory("src");
+    }
+    if (!fs::exists("inc")) {
+        fs::create_directory("inc");
+    }
+
     for (int i = 1; i < argc; i++)
     {
         std::string name = argv[i];
-        std::string nameCPP = name + ".cpp";
-        std::string nameHPP = name + ".hpp";
+        std::string nameCPP = "src/" + name + ".cpp";
+        std::string nameHPP = "inc/" + name + ".hpp";
         std::string Define = name;
+        if (fs::exists(nameCPP))
+            continue;
+        if (fs::exists(nameHPP))
+            continue;
 
         std::transform(Define.begin(), Define.end(), Define.begin(), 
                    [](unsigned char c) { return std::toupper(c); });
@@ -41,7 +57,7 @@ int main(int argc, char **argv)
             fichierHPP.close();
         } 
         else
-            std::cout << "Erreur : Impossible d'ouvrir le fichier.\n";
+            std::cout << "Erreur : Impossible d'ouvrir le fichier " << nameHPP << ".\n";
 
         std::ofstream fichierCPP(nameCPP);
         if (fichierCPP.is_open())
@@ -54,10 +70,8 @@ int main(int argc, char **argv)
             fichierCPP.close();
         }
         else
-            std::cout << "Erreur : Impossible d'ouvrir le fichier.\n";
+            std::cout << "Erreur : Impossible d'ouvrir le fichier " << nameCPP << ".\n";
     }
-    
-    
 
     return 0;
 }

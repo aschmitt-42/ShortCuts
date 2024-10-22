@@ -1,7 +1,7 @@
 NAME		= AutoClass
 	
 CC			= c++
-FLAGS		=  -std=c++11
+FLAGS		=  -std=c++17
 RM			= rm -rf
 
 OBJDIR		= .objFiles
