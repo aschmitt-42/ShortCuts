@@ -1,25 +1,30 @@
-NAME		= AutoClass
-	
-CC			= c++
-FLAGS		=  -std=c++17
-RM			= rm -rf
+NAME        = AutoClass
 
-OBJDIR		= .objFiles
+CC          = c++
+FLAGS       = -std=c++17
+RM          = rm -rf
 
-FILES		= main.cpp
+OBJDIR      = .objFiles
 
-SRC			= $(FILES:=.cpp)
-OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))
-HEADER		= 
+FILES       = main.cpp
 
-all: $(NAME)
+SRC         = $(FILES:=.cpp)
+OBJ         = $(addprefix $(OBJDIR)/, $(FILES:=.o))
+HEADER      =
 
-$(NAME): 
+SCRIPT      = autoclass.sh  # Name of your .sh script
+
+all: $(NAME) run-script
+
+$(NAME):
 	$(CC) $(FLAGS) $(FILES) -o $(NAME)
+
+run-script:
+	@./$(SCRIPT)  # Execute the shell script
 
 fclean: clean
 	@$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re 
+.PHONY: all clean fclean re run-script
