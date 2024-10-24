@@ -26,7 +26,9 @@ int main(int argc, char **argv)
         std::string name = argv[i];
         std::string nameCPP = "src/" + name + ".cpp";
         std::string nameHPP = "inc/" + name + ".hpp";
-        std::string Define = name;
+        std::string Define = name ;
+        std::string IncName = name + ".hpp";
+        
         if (fs::exists(nameCPP))
             continue;
         if (fs::exists(nameHPP))
@@ -62,7 +64,7 @@ int main(int argc, char **argv)
         std::ofstream fichierCPP(nameCPP);
         if (fichierCPP.is_open())
         {
-            fichierCPP << "#include \"" << nameHPP << "\"\n\n"
+            fichierCPP << "#include \"" << IncName << "\"\n\n"
             << name << "::" << name << "()\n{\n\tstd::cout << \"Default constructor called\" << std::endl;\n}\n"
             << name << "::~" << name << "()\n{\n\tstd::cout << \"Destructor called\" << std::endl;\n}\n"
             << name << "::" << name << "(const " << name << "&other)\n{\n\tstd::cout << \"Recopy constructor called\" << std::endl;\n}\n"

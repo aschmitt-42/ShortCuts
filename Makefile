@@ -14,7 +14,9 @@ HEADER      =
 
 SCRIPT      = autoclass.sh  # Name of your .sh script
 
-all: $(NAME) run-script
+all: $(NAME) 
+
+Alias : $(NAME) run-script
 
 $(NAME):
 	$(CC) $(FLAGS) $(FILES) -o $(NAME)
@@ -22,9 +24,9 @@ $(NAME):
 run-script:
 	@./$(SCRIPT)  # Execute the shell script
 
-fclean: clean
+fclean:
 	@$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re run-script
+.PHONY: all clean fclean re run-script Alias
