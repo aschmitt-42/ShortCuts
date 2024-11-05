@@ -10,7 +10,7 @@ fi
 commit_message="$1"
 
 # Ajoute tous les fichiers modifiés au staging
-echo -e "\n<git add>\n"
+echo -e "\n<git add>"
 git add .
 if [ $? -ne 0 ]; then
     echo -e "\n\nErreur lors de l'exécution de <git add>"
@@ -18,7 +18,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Fait un commit avec le message fourni
-echo -e "\n<git commit>\n"
+echo -e "<git commit>\n"
 git commit -m "$commit_message"
 if [ $? -ne 0 ]; then
     echo -e "\n\nErreur lors de l'exécution de <git commit>"
