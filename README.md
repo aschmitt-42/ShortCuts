@@ -41,7 +41,7 @@ Usage:
 
 This script automates the process of creating c++ class in canonical class name.
 
-It create Makefile, src/ClassName.cpp, inc/ClassName.hpp with class and fonction.
+It create Makefile, src/main.cpp, src/ClassName.cpp, inc/ClassName.hpp with some basic stuff inside.
 
 Usage:
 
